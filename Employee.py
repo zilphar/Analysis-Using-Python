@@ -18,7 +18,7 @@ older_employees[desired_columns].shape # returns 737 rows and 3 columns
 US_employees = employees[employees["Country"].isin(["United States"])]
 US_employees # 643 employees live in the United States 
 
-#of the employees in the United states which of them are above 35 years old 
+#of the employees in the United states which of them are above 35 years old?
 
 US_employees= employees[employees["Country"].isin(["United States"])] 
 
@@ -58,6 +58,7 @@ numerical_statistics
 mode_statistics = employees[["Age", "AnnualSalary", "Bonus"]].mode().iloc[0] #mode() returns a DF and iloc[0] selects the 1st row of the resulting DF which contains the modes for each column 
 
 mode_statistics
+
              #median()
 median_statistics = employees[["Age", "AnnualSalary", "Bonus"]].median()
 
@@ -68,18 +69,25 @@ median_statistics
     # convert the date to datetime 
 employees["HireDate"] = pd.to_datetime(employees["HireDate"])
 
-employees["HireDate"]
+print(employees["HireDate"])
 
 employees["Year"]= employees["HireDate"].dt.year
 
-employees["Year"]
+print(employees["Year"])
 
-employees
 
 # what is the max and min Hiredate for the employees 
 
 print(employees["HireDate"].min(), employees["HireDate"].max())  # max hiredate is 2021-12-26 and min is 1992-01-09 
 
+# I want to add another column about the Bonus Amount 
+employees["Bonus_Amount"] = employees["AnnualSalary"] * employees["Bonus"]
 
+print(employees["Bonus_Amount"])
 
+   # total compensation 
+employees["Total_Compensation"] = employees["Bonus_Amount"] + employees["AnnualSalary"] 
 
+print(employees["Total_Compensation"])
+
+print(employees) #prints the final DF 
